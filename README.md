@@ -1,7 +1,7 @@
 # @enum/erate
 [![Build Status](https://travis-ci.org/elidoran/node-enum-erate.svg?branch=master)](https://travis-ci.org/elidoran/node-enum-erate)
 [![Dependency Status](https://gemnasium.com/elidoran/node-enum-erate.png)](https://gemnasium.com/elidoran/node-enum-erate)
-[![npm version](https://badge.fury.io/js/%40enum%2Ferate.svg)](http://badge.fury.io/js/%40enum%2Ferate)
+[![npm version](https://badge.fury.io/js/%40enum%2Ferate.svg)](https://badge.fury.io/js/%40enum%2Ferate)
 [![Coverage Status](https://coveralls.io/repos/github/elidoran/node-enum-erate/badge.svg?branch=master)](https://coveralls.io/github/elidoran/node-enum-erate?branch=master)
 
 Create an immutable enum with immutable items and custom properties on both enum and enum items.
@@ -37,9 +37,9 @@ Color.RED === Color.BLUE// false
 Color.toString() // Color[RED,GREEN,BLUE]
 Color // is:
 {
-  { name: 'RED',   index:0, value:1 }
-  { name: 'GREEN', index:1, value:2 }
-  { name: 'BLUE',  index:2, value:4 }
+  RED  : { name: 'RED',   index:0, value:1 }
+  GREEN: { name: 'GREEN', index:1, value:2 }
+  BLUE : { name: 'BLUE',  index:2, value:4 }
 }
 
 // this array is immutable because it returns a copy.
