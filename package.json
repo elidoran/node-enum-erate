@@ -1,0 +1,45 @@
+{
+  "name": "@enum/erate",
+  "version": "0.1.0",
+  "description": "Create an immutable enum with immutable items and custom properties on both enum and enum items",
+  "main": "lib",
+  "keywords": [
+    "enum",
+    "enumerate",
+    "custom",
+    "customize",
+    "customizable",
+    "immutable"
+  ],
+  "author": "Eli Doran <eli+npm@elidoran.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "coffee --bare --compile lib",
+    "clean": "rm -rf lib/*.js",
+    "prepublish": "npm run build",
+    "postpublish": "npm run clean",
+    "test": "_mocha --compilers coffee:coffee-script/register --reporter spec --bail --check-leaks test/lib",
+    "coverage": "istanbul cover _mocha -- --compilers coffee:coffee-script/register --require coffee-coverage/register-istanbul -R spec test/lib",
+    "publish-coverage": "npm run coverage && cat coverage/lcov.info | coveralls",
+    "coverage-lcov": "istanbul cover _mocha --report lcovonly -- --compilers coffee:coffee-script/register --require coffee-coverage/register-istanbul -R spec test/lib",
+    "coverage-clean": "rm -rf ./coverage",
+    "travis": "npm run clean && npm run coverage-lcov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/elidoran/node-enum-erate.git"
+  },
+  "bugs": "http://github.com/elidoran/node-enum-erate/issues",
+  "devDependencies": {
+    "coffee-coverage": "^1.0.1",
+    "coffee-script": "^1.12.2",
+    "coveralls": "^2.11.15",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "mocha-lcov-reporter": "^1.2.0"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=0.12"
+  }
+}
