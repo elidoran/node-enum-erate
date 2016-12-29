@@ -17,6 +17,7 @@ npm install @enum/erate --save
 
 ```javascript
 var enumerate = require('@enum/erate')
+  // use simple common style of multiple strings with bit ops
   , Color     = enumerate('Color', 'RED', 'GREEN', 'BLUE')
 
 Color.name              // 'Color'
@@ -109,7 +110,7 @@ enm = enumerate('Name', {
   items: [
     {name:'A', itemNum:456 },
     {name:'B', itemString:'item' },
-    {name:'C', itemFn:function() { return 'fun 2'} }
+    {name:'C', itemFn:function() { return 'fun 2'} } // also not enumerable
   ]
 })
 
@@ -119,12 +120,20 @@ enm.someNum    // 123
 enm.someString // 'extra'
 enm.someFn()   // 'fun'
 
+// they're immutable
+enm.someNum = 35261
+enm.someString = 'new string'
+enm.someFun = function() { }
+// and that won't have changed it at all.
+// they'll all still be the same as before.
 
 // the extra properties on the items are also available.
 // they're enumerable, except functions.
+// they're also immutable just as above on the enum
 enm.A.itemNum    // 456
 enm.A.itemString // 'item'
 enm.A.itemFn()   // 'fun 2'
+
 
 // F. specify some groups of the enum items to become their own item
 // see the section on Groups for more
