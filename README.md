@@ -17,24 +17,24 @@ npm install @enum/erate --save
 
 ```javascript
 var enumerate = require('@enum/erate')
-  , Color     = enumerate 'Color', 'RED', 'GREEN', 'BLUE'
+  , Color     = enumerate('Color', 'RED', 'GREEN', 'BLUE')
 
-console.log(Color.name)              // 'Color'
-console.log(Color.RED)               // 'RED'
-console.log(Color.RED.name)          // 'RED'
-console.log(Color.RED.index)         // 0
-console.log(Color.RED.value)         // 1 (2^0)
+Color.name              // 'Color'
+Color.RED               // 'RED'
+Color.RED.name          // 'RED'
+Color.RED.index         // 0
+Color.RED.value         // 1 (2^0)
 
-console.log(Color.BLUE)              // 'BLUE'
-console.log(Color.BLUE.name)         // 'BLUE'
-console.log(Color.BLUE.index)        // 1
-console.log(Color.BLUE.value)        // 2 (2^1)
+Color.BLUE              // 'BLUE'
+Color.BLUE.name         // 'BLUE'
+Color.BLUE.index        // 1
+Color.BLUE.value        // 2 (2^1)
 
-console.log(Color.RED === Color.RED) // true
-console.log(Color.RED === Color.BLUE)// false
+Color.RED === Color.RED // true
+Color.RED === Color.BLUE// false
 
-console.log(Color.toString())  // Color[RED,GREEN,BLUE]
-console.log(Color)             // outputs:
+Color.toString() // Color[RED,GREEN,BLUE]
+Color // is:
 {
   { name: 'RED',   index:0, value:1 }
   { name: 'GREEN', index:1, value:2 }
@@ -43,26 +43,26 @@ console.log(Color)             // outputs:
 
 // this array is immutable because it returns a copy.
 // array of enum items [ Color.RED, Color.GREEN, Color.BLUE ]
-console.log(Color.items)
+Color.items
 
 // these are immutable because they aren't stored in memory,
 // when called, they run a filter on the items array to get the result
-console.log(Color.names())   // [ 'RED', 'GREEN', 'BLUE' ]
-console.log(Color.keys())    // [ 'RED', 'GREEN', 'BLUE' ]
-console.log(Color.indexes()) // [ 0, 1, 2 ]  (custom indexes are possible...)
-console.log(Color.values())  // [ 1, 2, 4 ]
+Color.names()   // [ 'RED', 'GREEN', 'BLUE' ]
+Color.keys()    // [ 'RED', 'GREEN', 'BLUE' ]
+Color.indexes() // [ 0, 1, 2 ]  (custom indexes are possible...)
+Color.values()  // [ 1, 2, 4 ]
 
 // individual items have a `has()` function to be consistent
 // with the group items which have `has()`
-console.log(Color.RED.has(Color.RED))  // true  (see groups section)
-console.log(Color.RED.has(Color.BLUE)) // false (see groups section)
+Color.RED.has(Color.RED)  // true  (see groups section)
+Color.RED.has(Color.BLUE) // false (see groups section)
 
 // default values are power of 2 for bit operations:
 var purple = Color.RED.value | Color.BLUE.value
 // test with is()
-console.log(Color.RED.is(purple))    // true
-console.log(Color.GREEN.is(purple))  // false
-console.log(Color.BLUE.is(purple))   // true
+Color.RED.has(purple)    // true
+Color.GREEN.has(purple)  // false
+Color.BLUE.has(purple)   // true
 
 Color.valueOf(0)     // uses it as index to get Color.RED
 Color.valueOf('RED') // uses it as name to get Color.RED
@@ -115,16 +115,16 @@ enm = enumerate('Name', {
 
 // the properties are on the `enm` enum object.
 // they're enumerable, except functions.
-console.log(enm.someNum)    // 123
-console.log(enm.someString) // 'extra'
-console.log(enm.someFn())   // 'fun'
+enm.someNum    // 123
+enm.someString // 'extra'
+enm.someFn()   // 'fun'
 
 
 // the extra properties on the items are also available.
 // they're enumerable, except functions.
-console.log(enm.A.itemNum)    // 456
-console.log(enm.A.itemString) // 'item'
-console.log(enm.A.itemFn())   // 'fun 2'
+enm.A.itemNum    // 456
+enm.A.itemString // 'item'
+enm.A.itemFn()   // 'fun 2'
 
 // F. specify some groups of the enum items to become their own item
 // see the section on Groups for more
@@ -143,10 +143,10 @@ enm = enumerate('Name', {
   }
 })
 
-console.log(enm.names)         // [ 'A', 'B', 'C', 'AB', 'BC' ]
-console.log(enm.AB.has(enm.A)) // true
-console.log(enm.AB.has(enm.C)) // false
-console.log(enm.AB.members)    // contains both enm.A and enm.B in array
+enm.names         // [ 'A', 'B', 'C', 'AB', 'BC' ]
+enm.AB.has(enm.A) // true
+enm.AB.has(enm.C) // false
+enm.AB.members    // contains both enm.A and enm.B in array
 ```
 
 ## Usage: Groups
